@@ -12,7 +12,8 @@ import {
 import CustomButton from "./CustomButton";
 import Link from "next/link";
 import CustomSelect from "./CustomSelect";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+// import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { ThemeSwitcher } from "./ThemeSwitch";
 export default function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const navItems = [
@@ -53,10 +54,13 @@ export default function NavigationBar() {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-        <SignedOut>
+        <NavbarItem>
+          <ThemeSwitcher />
+        </NavbarItem>
+        {/* <SignedIn> */}
+          {/* <UserButton /> */}
+        {/* </SignedIn> */}
+        {/* <SignedOut> */}
           <CustomButton
             text={"Sign Up"}
             color="primary"
@@ -73,13 +77,13 @@ export default function NavigationBar() {
             as={Link}
             href="/sign-in"
           />
-        </SignedOut>
+        {/* </SignedOut> */}
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
       </NavbarContent>
-      <NavbarMenu className="items-center mt-5">
+      <NavbarMenu className="items-center">
         {navItems.map((item, i) => {
           return item.type === "dropdown" ? (
             <CustomSelect
@@ -97,7 +101,7 @@ export default function NavigationBar() {
           );
         })}
         <NavbarMenuItem>
-          <SignedOut>
+          {/* <SignedOut> */}
             <CustomButton
               text={"Sign up"}
               color="primary"
@@ -105,7 +109,7 @@ export default function NavigationBar() {
               href="/sign-up"
               className="mt-3 w-28"
             />
-          </SignedOut>
+          {/* </SignedOut> */}
         </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>

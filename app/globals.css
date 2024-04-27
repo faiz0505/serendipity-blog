@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scrollbar-width: 0;
+}
 .paddings {
   @apply px-2 md:px-5 lg:px-10 xl:px-16;
 }

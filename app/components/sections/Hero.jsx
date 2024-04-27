@@ -1,11 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import CustomButton from "./CustomButton";
-import Search from "./Search";
+import CustomButton from "../CustomButton";
+import Search from "../Search";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 const Hero = () => {
   return (
-    <section className="w-full h-screen absolute top-0 bg-emerald-700 dark:bg-zinc-900 flex flex-col md:flex-row-reverse md:justify-between gap-3 paddings justify-center">
+    <section className="w-full h-[89vh] bg-emerald-700 dark:bg-zinc-900 flex flex-col md:flex-row-reverse md:justify-between gap-3 paddings justify-center snap-start">
       <figure className="w-full md:w-80 h-72 md:border relative md:rounded-full overflow-hidden self-center light:bg-slate-50 dark:bg-gray-950">
         <Image
           src={"/heroImage.png"}
@@ -19,13 +19,13 @@ const Hero = () => {
         <div className="my-3 ">
           <Search />
         </div>
-        <h1 className="text-3xl text-gray-100 ">
+        <h1 className="text-2xl md:text-3xl text-gray-100 ">
           Spark Something Unexpected: Explore and Share on Serendipity
         </h1>
-        <h3 className="text-gray-100 text-xl">
+        <h3 className="text-gray-100 text-lg md:text-xl">
           Unleash the power of serendipitous discovery!
         </h3>
-        <p className="text-xs text-gray-100">
+        <p className="text-xs font-extralight text-gray-100">
           Serendipity is your gateway to explore a world of ideas, thoughts, and
           blogs. Dive into unexpected connections, share your passions, and
           ignite conversations that spark creativity.
