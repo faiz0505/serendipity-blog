@@ -1,5 +1,5 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
 export const SetUrlParams = () => {
@@ -7,7 +7,7 @@ export const SetUrlParams = () => {
 
   // Get a new searchParams string by merging the current
   // searchParams with a provided key/value pair
-   const createQueryString = useCallback(
+  const createQueryString = useCallback(
     (name, value) => {
       const params = new URLSearchParams(searchParams.toString());
       params.set(name, value);
@@ -16,4 +16,10 @@ export const SetUrlParams = () => {
     },
     [searchParams]
   );
+};
+
+export const getParams = () => {
+  const pathname = usePathname();
+  console.log("asjhd");
+  console.log(pathname);
 };

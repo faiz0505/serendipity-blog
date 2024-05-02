@@ -10,9 +10,10 @@ const Hero = () => {
         <Image
           src={"/heroImage.png"}
           fill
-          objectFit="contain"
+          priority
+          sizes="(min-width: 800px) 50vw 100vw"
           alt="hero image"
-          className=""
+          className=" object-contain"
         />
       </figure>
       <aside className="w-full md:w-1/2 self-center flex flex-col gap-3">

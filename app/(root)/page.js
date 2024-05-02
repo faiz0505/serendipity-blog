@@ -1,15 +1,14 @@
 import Hero from "@/app/components/sections/Hero";
-import Link from "next/link";
 import React from "react";
-import Categories from "../components/sections/Categories";
-import Blogs from "../components/sections/Blogs";
+import Categories from "../components/Categories";
+
+import Posts from "../components/sections/posts";
 
 const page = () => {
   return (
-    <main className="h-[89vh] overflow-y-scroll scrollbar-hide snap-y snap-mandatory ">
+    <main>
       <Hero />
       <Categories />
-      <Blogs />
     </main>
   );
 };
