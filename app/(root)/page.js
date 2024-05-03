@@ -1,8 +1,6 @@
 import Hero from "@/app/components/sections/Hero";
 import React from "react";
-import Categories from "../components/Categories";
-
-import Posts from "../components/sections/posts";
+import Categories from "../components/sections/Categories";
 
 const page = () => {
   return (

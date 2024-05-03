@@ -11,7 +11,7 @@ export const data = [
     title: "The Impact of Climate Change on Biodiversity",
     content:
       "Climate change is having profound effects on global biodiversity. Rising temperatures, changing precipitation patterns, and more extreme weather events are altering habitats and threatening many species with extinction.",
-    category: "Environment",
+    category: "international",
   },
   {
     uniqueId: "3",

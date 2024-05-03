@@ -1,9 +1,35 @@
 "use client";
+// CustomPagination.jsx
 import React from "react";
 import { Pagination } from "@nextui-org/react";
 
-export default function CustomPagination({ currentPage, setCurrentPage }) {
+const CustomPagination = ({
+  currentPage,
+  setCurrentPage,
+  totalPages,
+  categoriesRef,
+}) => {
+  console.log(totalPages);
+  const handleChangePage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    if (categoriesRef.current) {
+      categoriesRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
-    <Pagination total={8} initialPage={currentPage} onChange={setCurrentPage} />
+    <div className="flex justify-center mt-5">
+      <Pagination
+        total={totalPages}
+        initialPage={currentPage}
+        onChange={handleChangePage}
+        page={currentPage}
+      />
+    </div>
   );
-}
+};
+
+export default CustomPagination;

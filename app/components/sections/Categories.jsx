@@ -1,13 +1,16 @@
 "use client";
 import { Tab, Tabs } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
-import { fetchPosts } from "../actions/blog.actions";
-import Pagination from "./Pagination";
+import React, { useEffect, useState, useRef } from "react";
+import { fetchPosts, postsCount } from "@/app/actions/blog.actions";
+import Pagination from "../Pagination";
+import Posts from "./Posts";
 
 const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const categoriesRef = useRef();
   const categories = [
     "All",
     "Education",
@@ -20,15 +23,24 @@ const Categories = () => {
   ];
   useEffect(() => {
     const filterPosts = fetchPosts(
-      selectedCategory === "All" ? null : selectedCategory
+      selectedCategory === "All" ? null : selectedCategory,
+      currentPage,
+      categories
     );
+
     setPosts(filterPosts);
+  }, [selectedCategory, currentPage]);
+
+  useEffect(() => {
+    setTotalPages(
+      Math.ceil(
+        postsCount(selectedCategory === "All" ? null : selectedCategory) / 9
+      )
+    );
   }, [selectedCategory]);
-  // useEffect(() => {
-  //   console.log(currentPage);
-  // }, [currentPage]);
+
   return (
-    <div className="w-full paddings h-auto">
+    <div className="w-full paddings h-auto" ref={categoriesRef}>
       <Tabs
         classNames={{
           base:
@@ -36,24 +48,26 @@ const Categories = () => {
         }}
         aria-label="categories"
         variant="underlined"
-        onSelectionChange={(category) => setSelectedCategory(category)}
+        onSelectionChange={(category) => {
+          setSelectedCategory(category);
+          setCurrentPage(1);
+        }}
         selectedKey={selectedCategory}
       >
         {categories.map((category) => {
           return (
             <Tab key={category} title={category}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full mb-5">
-                {!posts || posts.length > 0 ? (
-                  posts
-                ) : (
-                  <div>Posts Not Found</div>
-                )}
-              </div>
+              <Posts posts={posts} currentPage={currentPage} />
             </Tab>
           );
         })}
       </Tabs>
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        categoriesRef={categoriesRef}
+        totalPages={totalPages}
+      />
     </div>
   );
 };

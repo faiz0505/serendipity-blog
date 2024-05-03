@@ -4,7 +4,7 @@ import Footer from "../components/sections/Footer";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className=" scroll-smooth">
         <NextUIProvider>
           <NavigationBar />
           {children}
