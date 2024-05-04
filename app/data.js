@@ -5,6 +5,7 @@ export const data = [
     content:
       "Artificial intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems. These processes include learning, reasoning, and self-correction. AI is a vast field, and its applications are continually expanding.",
     category: "Technology",
+    date: "12-May-2024",
   },
   {
     uniqueId: "2",
@@ -12,6 +13,7 @@ export const data = [
     content:
       "Climate change is having profound effects on global biodiversity. Rising temperatures, changing precipitation patterns, and more extreme weather events are altering habitats and threatening many species with extinction.",
     category: "international",
+    date: "10-May-2024",
   },
   {
     uniqueId: "3",
@@ -19,6 +21,7 @@ export const data = [
     content:
       "Scientists are actively searching for signs of extraterrestrial life beyond Earth. With advances in astronomy and astrobiology, we are discovering more about the potential for life on other planets and moons within our solar system and beyond.",
     category: "Science",
+    date: "10-May-2024",
   },
   {
     uniqueId: "4",
@@ -26,6 +29,7 @@ export const data = [
     content:
       "Photography is a powerful medium for capturing moments in time and expressing creativity. From portraits to landscapes, photographers use their skills to convey emotions, tell stories, and document the world around them.",
     category: "Art",
+    date: "10-May-2024",
   },
   {
     uniqueId: "5",
@@ -33,6 +37,7 @@ export const data = [
     content:
       "Renewable energy sources such as solar, wind, and hydroelectric power are becoming increasingly important in the transition to a sustainable energy future. Advancements in technology and policy are driving growth in the renewable energy sector.",
     category: "Technology",
+    date: "10-May-2024",
   },
   {
     uniqueId: "6",
@@ -41,6 +46,7 @@ export const data = [
     content:
       "Many species around the world are facing extinction due to habitat loss, poaching, and other human activities. Conservation efforts aim to protect and restore populations of endangered species and preserve biodiversity for future generations.",
     category: "Environment",
+    date: "10-May-2024",
   },
   {
     uniqueId: "7",
@@ -49,6 +55,7 @@ export const data = [
     content:
       "Quantum mechanics is the branch of physics that describes the behavior of subatomic particles such as electrons and photons. It is a complex and counterintuitive theory that has led to groundbreaking technological advancements.",
     category: "Science",
+    date: "10-May-2024",
   },
   {
     uniqueId: "8",
@@ -56,6 +63,7 @@ export const data = [
     content:
       "Modern art encompasses a wide range of artistic styles and movements that emerged in the late 19th and early 20th centuries. From impressionism to surrealism, modern artists have challenged traditional notions of art and pushed boundaries in creative expression.",
     category: "Art",
+    date: "10-May-2024",
   },
   {
     uniqueId: "9",
@@ -63,6 +71,7 @@ export const data = [
     content:
       "Blockchain technology has the potential to revolutionize the way we store and transfer value online. Its decentralized nature and cryptographic security make it ideal for applications such as cryptocurrency, smart contracts, and supply chain management.",
     category: "Technology",
+    date: "10-May-2024",
   },
   {
     uniqueId: "10",
@@ -70,6 +79,7 @@ export const data = [
     content:
       "Natural resources such as water, forests, and minerals are essential for human survival and economic development. Sustainable management practices are needed to ensure these resources are available for future generations.",
     category: "Environment",
+    date: "10-May-2024",
   },
   {
     uniqueId: "11",
@@ -77,6 +87,7 @@ export const data = [
     content:
       "The deep sea is one of the least explored and most mysterious environments on Earth. It is home to a diverse array of life forms, many of which are still unknown to science.",
     category: "Science",
+    date: "10-May-2024",
   },
   {
     uniqueId: "12",
@@ -84,6 +95,7 @@ export const data = [
     content:
       "Abstract art is a form of visual expression that does not attempt to represent reality. Instead, abstract artists use color, shape, and form to evoke emotions and stimulate the imagination of the viewer.",
     category: "Art",
+    date: "10-May-2024",
   },
   {
     uniqueId: "13",
@@ -91,6 +103,7 @@ export const data = [
     content:
       "E-commerce has transformed the way we shop and do business in the digital age. With the proliferation of online marketplaces and payment systems, consumers have greater access to goods and services than ever before.",
     category: "Technology",
+    date: "10-May-2024",
   },
   {
     uniqueId: "14",
@@ -98,6 +111,7 @@ export const data = [
     content:
       "Renewable energy sources such as solar and wind power play a crucial role in reducing greenhouse gas emissions and mitigating climate change. Transitioning to a clean energy economy is essential for the future of our planet.",
     category: "Environment",
+    date: "10-May-2024",
   },
   {
     uniqueId: "15",
@@ -105,6 +119,7 @@ export const data = [
     content:
       "The origin of life on Earth is one of the greatest mysteries in science. Scientists study prebiotic chemistry and early Earth conditions to understand how the first cells may have formed billions of years ago.",
     category: "Science",
+    date: "10-May-2024",
   },
   {
     uniqueId: "16",
@@ -112,6 +127,7 @@ export const data = [
     content:
       "Minimalist art is characterized by simplicity, clarity, and precision. Artists in this movement use a minimal number of elements to create powerful and thought-provoking works that challenge traditional notions of art.",
     category: "Art",
+    date: "10-May-2024",
   },
   {
     uniqueId: "17",
@@ -119,6 +135,7 @@ export const data = [
     content:
       "Artificial intelligence has the potential to revolutionize healthcare by improving diagnosis, treatment, and patient care. Machine learning algorithms can analyze large amounts of medical data to identify patterns and make predictions.",
     category: "Technology",
+    date: "10-May-2024",
   },
   {
     uniqueId: "18",
@@ -126,6 +143,7 @@ export const data = [
     content:
       "Urbanization presents challenges for biodiversity conservation, but it also offers opportunities to create green spaces and wildlife corridors within cities. Urban planners and conservationists work together to promote biodiversity in urban environments.",
     category: "Environment",
+    date: "10-May-2024",
   },
   {
     uniqueId: "19",
@@ -134,6 +152,7 @@ export const data = [
     content:
       "Dark matter is one of the greatest unsolved mysteries in astrophysics. Although it does not emit light or energy, dark matter exerts gravitational effects on visible matter, influencing the structure and evolution of galaxies.",
     category: "Science",
+    date: "10-May-2024",
   },
   {
     uniqueId: "20",
@@ -141,5 +160,6 @@ export const data = [
     content:
       "Landscape photography captures the beauty and grandeur of the natural world, from majestic mountains to serene seascapes. Photographers use composition and lighting to convey the awe-inspiring beauty of nature.",
     category: "Art",
+    date: "10-May-2024",
   },
 ];

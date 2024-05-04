@@ -8,7 +8,7 @@ export default function RootLayout({ children }) {
         <NextUIProvider>
           <NavigationBar />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </NextUIProvider>
       </body>
     </html>

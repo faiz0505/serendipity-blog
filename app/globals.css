@@ -6,5 +6,5 @@
   scrollbar-width: 0;
 }
 .paddings {
-  @apply px-2 md:px-5 lg:px-10 xl:px-16;
+  @apply px-3 md:px-5 lg:px-10 xl:px-16;
 }
