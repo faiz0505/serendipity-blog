@@ -11,7 +11,7 @@ const Blog = ({ id, title, content, category, date }) => {
         className="h-full flex flex-col justify-between"
       >
         <div>
-          <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100 ">
+          <h2 className="text-2xl font-bold mb-4 text-emerald-700 dark:text-gray-100 ">
             {truncatedContent(title, 5)}
           </h2>
           <p className="dark:text-gray-200 text-gray-900 mb-4">

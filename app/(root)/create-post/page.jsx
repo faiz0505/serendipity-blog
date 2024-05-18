@@ -38,10 +38,10 @@ const CreatePost = () => {
     const category =
       selectedCategory === "Others" ? otherCategory : selectedCategory;
 
-    const newPost = await addNewPost(title, content, category);
-    if (newPost) {
-      alert("Post uploaded successfully");
-    }
+    // const newPost = await addNewPost(title, content, category);
+    // if (newPost) {
+    //   alert("Post uploaded successfully");
+    // }
   };
 
   return (

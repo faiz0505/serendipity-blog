@@ -1,12 +1,13 @@
+import { fetchBlogById } from "@/app/actions/blog.actions";
+import BlogViewCounter from "@/app/components/BlogViewCounter";
 import CustomButton from "@/app/components/CustomButton";
-import { data } from "@/app/data";
+
 import Image from "next/image";
 import React from "react";
 
-const page = ({ params }) => {
-  const { title, content, category, date } = data.find(
-    (post) => post.uniqueId === params.id
-  );
+const page = async ({ params }) => {
+  const data = await fetchBlogById(params.id);
+  const { title, content, createAt, category } = data;
   const comments = [
     {
       user: "John Doe",
@@ -36,7 +37,7 @@ const page = ({ params }) => {
         <p className="text-gray-700 dark:text-gray-200 mb-4">{content}</p>
         <div className="flex md:items-center md:justify-between text-gray-500 text-sm mb-4 flex-col md:flex-row gap-y-2">
           <div>
-            {`Published on ${date} by`}
+            {`Published on ${createAt.split("T")[0]} by`}
             <span className="font-bold ml-2 underline">{"Guest User"}</span>
           </div>
           <div className="underline">
@@ -45,6 +46,7 @@ const page = ({ params }) => {
         </div>
         <hr className="border-t my-6" />
         <div>
+          <BlogViewCounter blogId={params.id} />
           <h2 className="text-xl font-semibold mb-4">Comments</h2>
           <form className="mb-4">
             <textarea

@@ -1,83 +1,47 @@
-// "use server";
-// import { connectToDatabase } from "@/lib/database/connectToDatabase";
-// import Blog from "../components/Blog";
-// import { data } from "../data";
-// import { Post } from "@/lib/database/Modals";
-
-// export const fetchPosts = (category, page, categories) => {
-//   if (!category) {
-//     const res = data;
-//     return res.slice(0, page * 9).map((post) => {
-//       return (
-//         <Blog
-//           key={post.uniqueId}
-//           id={post.uniqueId}
-//           title={post.title}
-//           content={post.content}
-//           category={post.category}
-//           date={"03-May-2024"}
-//         />
-//       );
-//     });
-//   }
-//   if (category === "Others") {
-//     const othersCategoryData = data.filter(
-//       (post) => !categories.includes(post.category)
-//     );
-//     return othersCategoryData.slice(0, page * 9).map((post) => {
-//       return (
-//         <Blog
-//           key={post.uniqueId}
-//           id={post.uniqueId}
-//           title={post.title}
-//           content={post.content}
-//           category={post.category}
-//           date={"03-May-2024"}
-//         />
-//       );
-//     });
-//   }
-//   const res = data.filter((post) => post.category === category);
-//   return res.slice(0, page * 9).map((post) => {
-//     return (
-//       <Blog
-//         key={post.uniqueId}
-//         id={post.uniqueId}
-//         title={post.title}
-//         content={post.content}
-//         categoty={post.category}
-//         date={"03-May-2024"}
-//       />
-//     );
-//   });
-// };
-
-// export const postsCount = (category) => {
-//   if (category) {
-//     const res = data.filter((post) => post.category === category);
-//     return res.length === 0 ? 1 : res.length;
-//   }
-//   const res = data;
-//   return res.length === 0 ? 1 : res.length;
-// };
-
 "use server";
-export const addNewPost = async (title, content, category, user) => {
+
+import { connectToDatabase } from "@/lib/database/connectToDatabase";
+import { Blog } from "@/lib/database/Modals";
+export const fetchBlogs = async (category, page) => {
+  let postsPerPage = 3;
   try {
     await connectToDatabase();
-    const newPost = await Post.create({
-      title,
-      content,
-      category,
-      createdAt: new Date().toLocaleDateString(),
-      updatedAt: "",
-      comments: [],
+
+    const blogs = await Blog.find(category ? { category } : {}, null, {
+      // sort: { createdAt: -1 },
+      skip: (page - 1) * postsPerPage,
+      limit: postsPerPage,
     });
-    if (!newPost) {
-      throw Error("Post didn't created");
-    }
-    return JSON.parse(JSON.stringify(newPost));
+
+    return JSON.parse(JSON.stringify(blogs));
   } catch (error) {
+    console.log(error);
+  }
+};
+
+export const totalBlogsCount = async (category) => {
+  try {
+    await connectToDatabase();
+
+    // Construct query object with category filter if provided
+    const query = category ? { category } : {};
+
+    const count = await Blog.countDocuments(query);
+    return count;
+  } catch (error) {
+    console.log(error);
     throw new Error(error);
   }
 };
+
+export const fetchBlogById = async (id) => {
+  try {
+    await connectToDatabase();
+    const res = await Blog.findById(id);
+    return JSON.parse(JSON.stringify(res));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const increamentBLogView = async () => {};

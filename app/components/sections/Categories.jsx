@@ -1,44 +1,30 @@
 "use client";
-import { Tab, Tabs } from "@nextui-org/react";
+import { Spinner, Tab, Tabs } from "@nextui-org/react";
 import React, { useEffect, useState, useRef } from "react";
-import { fetchPosts, postsCount } from "@/app/actions/blog.actions";
 import Pagination from "../Pagination";
-import Posts from "./Posts";
-
+import { fetchBlogs, totalBlogsCount } from "@/app/actions/blog.actions";
+import { categories } from "@/app/utils/constants";
+import BlogContainer from "./BlogContainer";
 const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalBlogs, setTotalBlogs] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const categoriesRef = useRef();
-  const categories = [
-    "All",
-    "Education",
-    "Technology",
-    "Science",
-    "Art",
-    "Busness",
-    "Politics",
-    "Others",
-  ];
-  useEffect(() => {
-    const filterPosts = fetchPosts(
-      selectedCategory === "All" ? null : selectedCategory,
-      currentPage,
-      categories
-    );
-
-    setPosts(filterPosts);
-  }, [selectedCategory, currentPage]);
 
   useEffect(() => {
-    setTotalPages(
-      Math.ceil(
-        postsCount(selectedCategory === "All" ? null : selectedCategory) / 9
-      )
-    );
-  }, [selectedCategory]);
-
+    totalBlogsCount(
+      selectedCategory === "All" ? null : selectedCategory
+    ).then((count) => setTotalBlogs(count));
+    fetchBlogs(
+      selectedCategory !== "All" && selectedCategory,
+      currentPage
+    ).then((res) => setBlogs(res));
+    setTotalPages(Math.ceil(totalBlogs / 3));
+    setLoading(false);
+  }, [selectedCategory, totalBlogs, currentPage]);
   return (
     <div className="w-full paddings h-auto" ref={categoriesRef}>
       <Tabs
@@ -54,20 +40,25 @@ const Categories = () => {
         }}
         selectedKey={selectedCategory}
       >
-        {categories.map((category) => {
-          return (
-            <Tab key={category} title={category}>
-              <Posts posts={posts} currentPage={currentPage} />
-            </Tab>
-          );
+        {categories?.map((category) => {
+          return <Tab key={category} title={category}></Tab>;
         })}
       </Tabs>
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        categoriesRef={categoriesRef}
-        totalPages={totalPages}
-      />
+      {loading ? (
+        <div className="w-full h-60 flex justify-center  items-center">
+          <Spinner />
+        </div>
+      ) : (
+        <BlogContainer blogs={blogs} />
+      )}
+    
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          categoriesRef={categoriesRef}
+          totalPages={totalPages}
+        />
+ 
     </div>
   );
 };

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -8,14 +8,16 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-} from "@nextui-org/navbar";
+} from "@nextui-org/react";
 import CustomButton from "./CustomButton";
 import Link from "next/link";
 import CustomSelect from "./CustomSelect";
-// import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { ThemeSwitcher } from "./ThemeSwitch";
 export default function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   const navItems = [
     { title: "Home", href: "/" },
     { title: "About", href: "/about" },
@@ -57,10 +59,19 @@ export default function NavigationBar() {
         <NavbarItem>
           <ThemeSwitcher />
         </NavbarItem>
-        {/* <SignedIn> */}
-          {/* <UserButton /> */}
-        {/* </SignedIn> */}
-        {/* <SignedOut> */}
+        <SignedIn>
+          <UserButton />
+          <CustomButton
+            text={"Dashboard"}
+            variant="bordered"
+            color="primary"
+            size="sm"
+            as={Link}
+            href="/dashboard"
+            className=""
+          />
+        </SignedIn>
+        <SignedOut>
           <CustomButton
             text={"Sign Up"}
             color="primary"
@@ -77,7 +88,7 @@ export default function NavigationBar() {
             as={Link}
             href="/sign-in"
           />
-        {/* </SignedOut> */}
+        </SignedOut>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
@@ -101,7 +112,7 @@ export default function NavigationBar() {
           );
         })}
         <NavbarMenuItem>
-          {/* <SignedOut> */}
+          <SignedOut>
             <CustomButton
               text={"Sign up"}
               color="primary"
@@ -109,7 +120,7 @@ export default function NavigationBar() {
               href="/sign-up"
               className="mt-3 w-28"
             />
-          {/* </SignedOut> */}
+          </SignedOut>
         </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>

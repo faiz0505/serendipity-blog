@@ -9,7 +9,6 @@ const CustomPagination = ({
   totalPages,
   categoriesRef,
 }) => {
-  console.log(totalPages);
   const handleChangePage = (pageNumber) => {
     setCurrentPage(pageNumber);
     if (categoriesRef.current) {
