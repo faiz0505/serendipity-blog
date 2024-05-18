@@ -73,7 +73,7 @@ const page = async ({ params }) => {
         {/* More options can be added here */}
       </div>
       <figure className="md:flex md:items-end hidden">
-        <Image src={"/bg_blog.svg"} height={600} width={350} className="" />
+        <Image src={"/bg_blog.svg"} alt="background blog image" height={600} width={350} className="" />
       </figure>
     </main>
   );
