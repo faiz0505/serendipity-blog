@@ -5,5 +5,6 @@ export default function Page() {
     <main className="w-full h-screen flex justify-center items-center">
       <SignUp path="/sign-up"/>
     </main>
+  
   );
 }
