@@ -19,7 +19,6 @@ export const truncatedContent = (content, length) => {
 
 export const countTotalViews = (posts) => {
   return posts.reduce((totalViews, post) => {
-    console.log(post.views);
     return totalViews + (post.views || 0); // Ensures views is a number, defaults to 0 if undefined
   }, 0);
 };

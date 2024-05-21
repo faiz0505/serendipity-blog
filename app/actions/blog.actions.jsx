@@ -30,7 +30,7 @@ export const createNewBlog = async (title, content, category, userId) => {
       user: userId,
       createAt: new Date().toLocaleDateString(),
       updatedAt: "",
-      views: [],
+      views: 0,
       comments: [],
     });
     if (!newBlog) {
@@ -63,7 +63,7 @@ export const fetchBlogById = async (id) => {
     const res = await Blog.findById(id);
     return JSON.parse(JSON.stringify(res));
   } catch (error) {
-    console.log(error);
+    throw new Error();
   }
 };
 
@@ -84,7 +84,7 @@ export const incrementViews = async (blogId) => {
       { $inc: { views: 1 } },
       { new: true }
     );
-    return updatedBlog;
+    return;
   } catch (err) {
     console.error(err);
     throw err;

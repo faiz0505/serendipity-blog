@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import { truncatedContent } from "../utils/utils";
+import { FaEye } from "react-icons/fa6";
 
-const Blog = ({ id, title, content, category, date }) => {
+const Blog = ({ id, title, content, category, date, views }) => {
   return (
     <div className=" rounded-lg shadow-md p-6 dark:bg-[#18181b] bg-white dark:border dark:border-white">
       <Link
@@ -17,11 +18,16 @@ const Blog = ({ id, title, content, category, date }) => {
             {truncatedContent(content, 15)}
           </p>
         </div>
+
         <div className="flex justify-between items-end text-sm">
           <p className="text-gray-500">{category}</p>
           <p className="text-gray-500">{date}</p>
         </div>
       </Link>
+      <div className="flex items-center gap-2">
+        <FaEye className="mt-0.5" />
+        <span className="font-bold text-xs">{views}</span>
+      </div>
     </div>
   );
 };

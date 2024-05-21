@@ -65,12 +65,12 @@ export default function NavigationBar() {
             userProfileUrl="/user-profile"
           />
           <CustomButton
-            text={"Dashboard"}
+            text={"Upload"}
             variant="bordered"
             color="primary"
             size="sm"
             as={Link}
-            href="/dashboard"
+            href="/create-post"
             className=""
           />
         </SignedIn>

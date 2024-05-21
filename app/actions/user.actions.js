@@ -59,6 +59,6 @@ export const fetchUserById = async (userId) => {
     const userData = await User.findById(userId);
     return JSON.parse(JSON.stringify(userData));
   } catch (error) {
-    // ErrorHandler(error);
+    throw new Error(error);
   }
 };

@@ -15,8 +15,8 @@ const Dashboard = async () => {
   if (!blogs) {
     <Spinner />;
   }
-  const views = countTotalViews(blogs)
-  console.log(views);
+  const views = countTotalViews(blogs);
+
   return (
     <section className="paddings">
       <Card className="">
@@ -29,7 +29,7 @@ const Dashboard = async () => {
               </span>
               Posts :
               {blogs ? (
-                <span className="font-bold ml-2"> 373</span>
+                <span className="font-bold ml-2"> {blogs.length}</span>
               ) : (
                 <Image
                   src="/loading.svg"
@@ -46,7 +46,7 @@ const Dashboard = async () => {
               </span>
               Views :
               {blogs ? (
-                <span className="font-bold ml-2">{blogs?.views?.length}</span>
+                <span className="font-bold ml-2">{views}</span>
               ) : (
                 <Image
                   src="/loading.svg"
