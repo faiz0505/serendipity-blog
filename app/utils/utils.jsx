@@ -16,3 +16,10 @@ export const truncatedContent = (content, length) => {
 //     throw new Error(typeof error === "string" ? error : JSON.stringify(error));
 //   }
 // };
+
+export const countTotalViews = (posts) => {
+  return posts.reduce((totalViews, post) => {
+    console.log(post.views);
+    return totalViews + (post.views || 0); // Ensures views is a number, defaults to 0 if undefined
+  }, 0);
+};

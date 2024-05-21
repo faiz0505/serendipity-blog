@@ -1,8 +1,9 @@
 "use client";
-import { addNewPost } from "@/app/actions/blog.actions";
+import { createNewBlog } from "@/app/actions/blog.actions";
 import CustomButton from "@/app/components/CustomButton";
 import React, { useState } from "react";
-
+import { useUser } from "@clerk/clerk-react";
+import { useRouter } from "next/navigation";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -20,7 +21,9 @@ const CreatePost = () => {
     "Sports",
     "Others",
   ];
-
+  const { user } = useUser();
+  const router = useRouter();
+  const userId = user?.publicMetadata.userId;
   const handleCategoryChange = (e) => {
     const selectedValue = e.target.value;
     setSelectedCategory(selectedValue);
@@ -37,11 +40,11 @@ const CreatePost = () => {
     e.preventDefault();
     const category =
       selectedCategory === "Others" ? otherCategory : selectedCategory;
-
-    // const newPost = await addNewPost(title, content, category);
-    // if (newPost) {
-    //   alert("Post uploaded successfully");
-    // }
+    const newPost = await createNewBlog(title, content, category, userId);
+    if (newPost) {
+      alert("Post uploaded successfully");
+      router.push("/");
+    }
   };
 
   return (

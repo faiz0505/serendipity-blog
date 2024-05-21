@@ -1,11 +1,10 @@
-import { Card, CardBody, CardHeader, CardFooter } from "@nextui-org/card";
 import Link from "next/link";
 import React from "react";
 import { truncatedContent } from "../utils/utils";
 
 const Blog = ({ id, title, content, category, date }) => {
   return (
-    <div className=" rounded-lg shadow-md p-6 dark:bg-[#18181b] bg-white">
+    <div className=" rounded-lg shadow-md p-6 dark:bg-[#18181b] bg-white dark:border dark:border-white">
       <Link
         href={`post/${id}`}
         className="h-full flex flex-col justify-between"

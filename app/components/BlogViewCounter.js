@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import { incrementViews } from "../actions/blog.actions";
 
 const BlogViewCounter = ({ blogId }) => {
   useEffect(() => {
@@ -8,9 +9,7 @@ const BlogViewCounter = ({ blogId }) => {
         JSON.parse(sessionStorage.getItem("viewedBlogs")) || [];
 
       if (!viewedBlogs.includes(blogId)) {
-        // await fetch(`/api/posts/${blogId}/updateViews`, {
-        //   method: "POST",
-        // });
+        await incrementViews(blogId);
 
         sessionStorage.setItem(
           "viewedBlogs",

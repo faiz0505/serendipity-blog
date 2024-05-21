@@ -8,3 +8,6 @@
 .paddings {
   @apply px-3 md:px-5 lg:px-10 xl:px-16;
 }
+.cl-userProfile-root {
+  @apply bg-black;
+}

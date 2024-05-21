@@ -60,7 +60,10 @@ export default function NavigationBar() {
           <ThemeSwitcher />
         </NavbarItem>
         <SignedIn>
-          <UserButton />
+          <UserButton
+            userProfileMode="navigation"
+            userProfileUrl="/user-profile"
+          />
           <CustomButton
             text={"Dashboard"}
             variant="bordered"
