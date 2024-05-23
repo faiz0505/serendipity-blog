@@ -90,3 +90,37 @@ export const incrementViews = async (blogId) => {
     throw err;
   }
 };
+
+export const deleteBlogById = async (blogId, path) => {
+  try {
+    await connectToDatabase();
+    const res = await Blog.findByIdAndDelete(blogId);
+    revalidatePath(path);
+    return JSON.parse(JSON.stringify(res));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const updateBlog = async (blogId, data) => {
+  try {
+    await connectToDatabase();
+    const updatedBlog = await Blog.findByIdAndUpdate(blogId, data, {
+      new: true,
+    });
+    revalidatePath("/");
+    return JSON.parse(JSON.stringify(updatedBlog));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const fetchBlogByQuery = async (query) => {
+  try {
+    await connectToDatabase();
+    const res = await Blog.find({ $text: { $search: query } });
+    return JSON.parse(JSON.stringify(res));
+  } catch (error) {
+    throw new Error(error);
+  }
+};

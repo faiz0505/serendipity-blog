@@ -5,17 +5,6 @@ export const truncatedContent = (content, length) => {
   );
 };
 
-// export const ErrorHandler = (error) => {
-//   // Check if error is empty object
-//   if (Object.keys(error).length === 0 && error.constructor === Object) {
-//     // If error is empty, return a custom message
-//     throw new Error("An empty error object was received.");
-//   } else {
-//     // If error is not empty, log the error and throw it
-//     console.log(error, typeof error);
-//     throw new Error(typeof error === "string" ? error : JSON.stringify(error));
-//   }
-// };
 
 export const countTotalViews = (posts) => {
   return posts.reduce((totalViews, post) => {

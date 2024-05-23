@@ -14,7 +14,11 @@ const BlogContainer = ({ blogs }) => {
           title={blog.title}
           content={blog.content}
           category={blog.category}
-          date={blog.createAt?.split("T")[0]}
+          date={
+            !blog.updatedAt
+              ? blog.createAt?.split("T")[0]
+              : blog.updatedAt?.split("T")[0]
+          }
           views={blog.views}
         />
       ))}

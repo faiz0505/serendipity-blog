@@ -1,26 +1,35 @@
 "use client";
-import { createNewBlog } from "@/app/actions/blog.actions";
+import {
+  createNewBlog,
+  fetchBlogById,
+  updateBlog,
+} from "@/app/actions/blog.actions";
 import CustomButton from "@/app/components/CustomButton";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { categories } from "@/app/utils/constants";
+import Categories from "@/app/components/sections/Categories";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [otherCategory, setOtherCategory] = useState("");
-  const categories = [
-    "Technology",
-    "Travel",
-    "Food",
-    "Fashion",
-    "Health",
-    "Business",
-    "Science",
-    "Art",
-    "Sports",
-    "Others",
-  ];
+
+  const searchParam = useSearchParams();
+  const query = searchParam.get("edit");
+  useEffect(() => {
+    if (query) {
+      fetchBlogById(query).then((res) => {
+        setTitle(res.title);
+        setContent(res.content);
+        categories.includes(res.category)
+          ? setSelectedCategory(res.category)
+          : setSelectedCategory("Others");
+        setOtherCategory(res.category);
+      });
+    }
+  }, []);
   const { user } = useUser();
   const router = useRouter();
   const userId = user?.publicMetadata.userId;
@@ -40,11 +49,28 @@ const CreatePost = () => {
     e.preventDefault();
     const category =
       selectedCategory === "Others" ? otherCategory : selectedCategory;
+    if (query) {
+      const updatePost = await updateBlog(query, {
+        title,
+        content,
+        category,
+        updatedAt: new Date().toLocaleDateString(),
+      });
+      if (!updatePost) {
+        alert("update failed!");
+        return;
+      }
+      alert("post updated successfully");
+      router.push("/");
+      return;
+    }
     const newPost = await createNewBlog(title, content, category, userId);
     if (newPost) {
       alert("Post uploaded successfully");
       router.push("/");
+      return;
     }
+    alert("post upload failed!");
   };
 
   return (
@@ -104,7 +130,7 @@ const CreatePost = () => {
               <option value="" disabled>
                 Select a category
               </option>
-              {categories.map((category, index) => (
+              {categories.slice(1, categories.length).map((category, index) => (
                 <option key={index} value={category}>
                   {category}
                 </option>
@@ -122,7 +148,11 @@ const CreatePost = () => {
               />
             )}
           </div>
-          <CustomButton type="submit" text={"submit"} color="primary" />
+          <CustomButton
+            type="submit"
+            text={query ? "Update" : "Sumbit"}
+            color="primary"
+          />
         </form>
       </div>
     </main>

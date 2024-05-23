@@ -26,7 +26,7 @@ const Categories = () => {
     setLoading(false);
   }, [selectedCategory, totalBlogs, currentPage]);
   return (
-    <div className="w-full paddings h-auto" ref={categoriesRef}>
+    <section className="w-full paddings h-auto" ref={categoriesRef}>
       <Tabs
         classNames={{
           base:
@@ -51,15 +51,14 @@ const Categories = () => {
       ) : (
         <BlogContainer blogs={blogs} />
       )}
-    
-        <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          categoriesRef={categoriesRef}
-          totalPages={totalPages}
-        />
- 
-    </div>
+
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        categoriesRef={categoriesRef}
+        totalPages={totalPages}
+      />
+    </section>
   );
 };
 
