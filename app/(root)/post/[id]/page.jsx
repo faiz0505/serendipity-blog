@@ -4,7 +4,22 @@ import BlogViewCounter from "@/app/components/BlogViewCounter";
 import Comments from "@/app/components/sections/Comments";
 import Image from "next/image";
 import React from "react";
+export const generateMetadata = async ({ params }) => {
+  const data = await fetchBlogById(params.id);
+  const userData = await fetchUserById(data.user);
 
+  return {
+    title: data.title,
+    description: data.content.substring(0, 150),
+    openGraph: {
+      title: data.title,
+      description: data.content.substring(0, 150),
+      type: "article",
+      publishedTime: data.createAt,
+      authors: [userData?.username],
+    },
+  };
+};
 const page = async ({ params }) => {
   const data = await fetchBlogById(params.id);
   const { title, content, createAt, category, views, user, comments } = data;
@@ -32,7 +47,6 @@ const page = async ({ params }) => {
         <hr className="border-t my-6" />
         <BlogViewCounter blogId={params.id} />
         <Comments postId={params.id} comments={comments} />
-        {/* More options can be added here */}
       </div>
       <figure className="md:flex md:items-end hidden">
         <Image

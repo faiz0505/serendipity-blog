@@ -9,7 +9,7 @@ const Search = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const query = formData.get("search");
-    router.push(query.toLowerCase());
+    router.push(`/query/${query.toLowerCase()}`);
   };
   return (
     <form onSubmit={handleSearch}>

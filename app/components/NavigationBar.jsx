@@ -13,8 +13,9 @@ import CustomButton from "./CustomButton";
 import Link from "next/link";
 import CustomSelect from "./CustomSelect";
 
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { ThemeSwitcher } from "./ThemeSwitch";
+import Image from "next/image";
 export default function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -35,7 +36,16 @@ export default function NavigationBar() {
   ];
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
-      <NavbarBrand>Serendipity</NavbarBrand>
+      <NavbarBrand>
+        <Link href={"/"}>
+          <Image
+            src={"/logo.svg"}
+            height={150}
+            width={150}
+            alt="Serendipity's Logo"
+          />
+        </Link>
+      </NavbarBrand>
       <NavbarContent className="hidden md:flex">
         {navItems.map((item, i) => {
           return item.type === "dropdown" ? (

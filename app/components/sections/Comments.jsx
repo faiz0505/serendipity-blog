@@ -53,9 +53,11 @@ const Comments = ({ postId, comments }) => {
       </form>
 
       {comments.map((comment) => (
-        <div key={comment._id} className="mb-4 border p-2">
-          <p className="font-semibold">{comment.user}</p>
-          <p className="text-sm">{comment.comment}</p>
+        <div key={comment._id} className="mb-4 border p-2 flex justify-between">
+          <div>
+            <p className="font-semibold">{comment.user}</p>
+            <p className="text-sm">{comment.comment}</p>
+          </div>
           <p className="text-xs">{comment.date}</p>
         </div>
       ))}

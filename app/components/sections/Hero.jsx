@@ -3,6 +3,7 @@ import React from "react";
 import CustomButton from "../CustomButton";
 import Search from "../Search";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import Link from "next/link";
 const Hero = () => {
   return (
     <section className="w-full h-[89vh] bg-emerald-700 dark:bg-zinc-900 flex flex-col md:flex-row-reverse md:justify-between gap-3 paddings justify-center snap-start">
@@ -31,19 +32,14 @@ const Hero = () => {
           blogs. Dive into unexpected connections, share your passions, and
           ignite conversations that spark creativity.
         </p>
-        <SignedIn>
-          <CustomButton
-            text={"Explore"}
-            className=" self-start"
-            size="lg"
-            color="secondary"
-          />
-        </SignedIn>
+
         <SignedOut>
           <CustomButton
             text={"Join Now"}
             className=" self-start"
             size="lg"
+            as={Link}
+            href={"/sign-up"}
             color="secondary"
           />
         </SignedOut>

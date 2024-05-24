@@ -3,13 +3,27 @@
 import { connectToDatabase } from "@/lib/database/connectToDatabase";
 import { Blog } from "@/lib/database/Modals";
 import { revalidatePath } from "next/cache";
+import { categories } from "../utils/constants";
 
 export const fetchBlogs = async (category, page) => {
   let postsPerPage = 3;
   try {
     await connectToDatabase();
 
-    const blogs = await Blog.find(category ? { category } : {}, null, {
+    let query = {};
+    if (category && category !== "All") {
+      if (category === "Others") {
+        query = {
+          category: {
+            $nin: categories.filter((cat) => cat !== "Others" && cat !== "All"),
+          },
+        };
+      } else {
+        query = { category };
+      }
+    }
+
+    const blogs = await Blog.find(query, null, {
       skip: (page - 1) * postsPerPage,
       limit: postsPerPage,
     });

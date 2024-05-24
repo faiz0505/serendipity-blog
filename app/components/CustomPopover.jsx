@@ -34,7 +34,7 @@ const CustomPopover = ({ blogId }) => {
   return (
     <Popover placement="bottom-end">
       <PopoverTrigger>
-        <Button isIconOnly size="sm" variant="none">
+        <Button isIconOnly size="sm" variant="flat">
           <FaEllipsis />
         </Button>
       </PopoverTrigger>
