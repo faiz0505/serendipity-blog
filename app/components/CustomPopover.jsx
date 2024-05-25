@@ -12,6 +12,7 @@ import { FaEdit } from "react-icons/fa";
 import Link from "next/link";
 import { deleteBlogById } from "../actions/blog.actions";
 import { usePathname } from "next/navigation";
+import toast from "react-hot-toast";
 const CustomPopover = ({ blogId }) => {
   const [isLoading, setIsLoading] = useState(false);
   const path = usePathname();
@@ -21,12 +22,12 @@ const CustomPopover = ({ blogId }) => {
       setIsLoading(true);
       const deleteBlog = await deleteBlogById(blogId, path);
       if (!deleteBlog) {
-        alert("could not delete blog");
+        toast.error("Blog Delete Failed! please try again");
         return;
       }
-      alert("blog successfully deleted");
+      toast.success("Your blog has been deleted");
     } catch (error) {
-      alert(error.messsage);
+      toast.error("Error deleting a blog! please try again");
     } finally {
       setIsLoading(false);
     }

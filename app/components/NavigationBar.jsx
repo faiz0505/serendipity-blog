@@ -22,16 +22,6 @@ export default function NavigationBar() {
   const navItems = [
     { title: "Home", href: "/" },
     { title: "About", href: "/about" },
-    {
-      title: "Categories",
-      type: "dropdown",
-      items: [
-        { title: "blog1", href: "/category/blog1" },
-        { title: "blog2", href: "/category/blog2" },
-        { title: "blog3", href: "/category/blog3" },
-        { title: "blog4", href: "/category/blog4" },
-      ],
-    },
     { title: "Contact", href: "/contact" },
   ];
   return (

@@ -1,14 +1,15 @@
 import React from "react";
 import { Select, SelectItem } from "@nextui-org/select";
 import Link from "next/link";
+import { categories } from "../utils/constants";
 
-export default function CustomSelect({ items, ...props }) {
+export default function CustomSelect({ ...props }) {
   return (
-    <Select {...props}>
-      {items.map((item, i) => {
+    <Select {...props} className="">
+      {categories.map((item, i) => {
         return (
           <SelectItem key={i} textValue={item.title}>
-            <Link href={item.href}>{item.title}</Link>
+            <Link href={`/category/${item.toLowerCase()}`}>{item}</Link>
           </SelectItem>
         );
       })}

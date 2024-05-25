@@ -4,6 +4,7 @@ import CustomButton from "../CustomButton";
 import { useUser } from "@clerk/clerk-react";
 import { usePathname } from "next/navigation";
 import { addNewComment } from "@/app/actions/comment.acctions";
+import toast from "react-hot-toast";
 const Comments = ({ postId, comments }) => {
   const [loading, setLoading] = useState(false);
   const { isSignedIn, user } = useUser();
@@ -13,7 +14,7 @@ const Comments = ({ postId, comments }) => {
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!isSignedIn) {
-      alert("please sign in to continue");
+      toast.error("please sign in to continue");
       return;
     }
     const formData = new FormData(e.target);
@@ -22,11 +23,11 @@ const Comments = ({ postId, comments }) => {
       setLoading(true);
       const newComment = await addNewComment(postId, comment, userId, path);
       if (!newComment) {
-        alert("comment faile");
+        toast.error("comment faile");
         return;
       }
       setLoading(false);
-      alert("your comment has been added");
+      toast.success("your comment has been added");
     } catch (error) {
       throw new Error(error);
     }

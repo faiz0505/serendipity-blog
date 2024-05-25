@@ -2,7 +2,11 @@ import { SignUp } from "@clerk/nextjs";
 import React from "react";
 
 const page = () => {
-  return <SignUp />;
+  return (
+    <main className="h-fit w-full flex justify-center py-5">
+      <SignUp />
+    </main>
+  );
 };
 
 export default page;

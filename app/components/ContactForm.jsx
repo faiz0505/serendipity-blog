@@ -1,8 +1,12 @@
 "use client";
 import { useState } from "react";
 import CustomButton from "./CustomButton";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const ContactForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -11,7 +15,32 @@ const ContactForm = () => {
     const message = formData.get("message");
     const data = { name, email, message };
 
-    
+    try {
+      setIsLoading(true);
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const jsonRes = await res.json();
+      console.log(jsonRes);
+      if (res.status.ok) {
+        toast.success("Email sent successfully");
+        router.push("/");
+        return;
+      }
+      toast.error(jsonRes.error || "Error sending email! Please try again");
+    } catch (error) {
+      toast.error(
+        typeof error === "string"
+          ? error
+          : error.message
+          ? error.message
+          : "Error while uploading post"
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -56,7 +85,12 @@ const ContactForm = () => {
           required
         ></textarea>
       </div>
-      <CustomButton type="submit" text={"Sumbit"} color="primary" />
+      <CustomButton
+        type="submit"
+        text={"Sumbit"}
+        color="primary"
+        isLoading={isLoading}
+      />
     </form>
   );
 };

@@ -10,12 +10,13 @@ import { useUser } from "@clerk/clerk-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { categories } from "@/app/utils/constants";
 import Categories from "@/app/components/sections/Categories";
+import toast from "react-hot-toast";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [otherCategory, setOtherCategory] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const searchParam = useSearchParams();
   const query = searchParam.get("edit");
   useEffect(() => {
@@ -47,30 +48,43 @@ const CreatePost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const category =
       selectedCategory === "Others" ? otherCategory : selectedCategory;
-    if (query) {
-      const updatePost = await updateBlog(query, {
-        title,
-        content,
-        category,
-        updatedAt: new Date().toLocaleDateString(),
-      });
-      if (!updatePost) {
-        alert("update failed!");
+    try {
+      if (query) {
+        const updatePost = await updateBlog(query, {
+          title,
+          content,
+          category,
+          updatedAt: new Date().toLocaleDateString(),
+        });
+        if (!updatePost) {
+          toast.error("Update failed! please try again");
+          return;
+        }
+        toast.success("Blog updated successfully");
+        router.push("/");
         return;
       }
-      alert("post updated successfully");
-      router.push("/");
-      return;
+      const newPost = await createNewBlog(title, content, category, userId);
+      if (newPost) {
+        toast.success("Your post was uploaded successfully");
+        router.push("/");
+        return;
+      }
+      toast.error("Post upload failed! Please try again");
+    } catch (error) {
+      toast.error(
+        typeof error === "string"
+          ? error
+          : error.message
+          ? error.message
+          : "Error while uploading post"
+      );
+    } finally {
+      setIsLoading(false);
     }
-    const newPost = await createNewBlog(title, content, category, userId);
-    if (newPost) {
-      alert("Post uploaded successfully");
-      router.push("/");
-      return;
-    }
-    alert("post upload failed!");
   };
 
   return (
@@ -152,6 +166,7 @@ const CreatePost = () => {
             type="submit"
             text={query ? "Update" : "Sumbit"}
             color="primary"
+            isLoading={isLoading}
           />
         </form>
       </div>

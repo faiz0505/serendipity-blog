@@ -11,7 +11,7 @@ import Image from "next/image";
 import { countTotalViews } from "@/app/utils/utils";
 const Dashboard = async () => {
   const user = await currentUser();
-  const blogs = await fetchBlogsByUser(user.publicMetadata.userId);
+  const blogs = await fetchBlogsByUser(user?.publicMetadata?.userId);
   if (!blogs) {
     <Spinner />;
   }

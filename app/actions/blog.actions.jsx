@@ -110,6 +110,7 @@ export const deleteBlogById = async (blogId, path) => {
     await connectToDatabase();
     const res = await Blog.findByIdAndDelete(blogId);
     revalidatePath(path);
+    revalidatePath("/");
     return JSON.parse(JSON.stringify(res));
   } catch (error) {
     throw new Error(error);
