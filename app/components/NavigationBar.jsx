@@ -13,7 +13,7 @@ import CustomButton from "./CustomButton";
 import Link from "next/link";
 import CustomSelect from "./CustomSelect";
 
-import { SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { ThemeSwitcher } from "./ThemeSwitch";
 import Image from "next/image";
 export default function NavigationBar() {
@@ -83,6 +83,7 @@ export default function NavigationBar() {
             href="/sign-up"
             className="hidden md:flex"
           />
+
           <CustomButton
             text={"Sign in"}
             color="primary"

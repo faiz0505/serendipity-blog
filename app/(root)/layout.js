@@ -1,7 +1,6 @@
 import NavigationBar from "@/app/components/NavigationBar";
 import NextUIProvider from "@/lib/Provider";
 import { Toaster } from "react-hot-toast";
-
 export const metadata = {
   title: "Home",
 };

@@ -1,12 +1,5 @@
-import { SignUp } from "@clerk/nextjs";
-import React from "react";
+import {  SignUp } from "@clerk/nextjs";
 
-const page = () => {
-  return (
-    <main className="h-fit w-full flex justify-center py-5">
-      <SignUp />
-    </main>
-  );
-};
-
-export default page;
+export default function Page() {
+  return <SignUp />;
+}
