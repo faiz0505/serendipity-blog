@@ -24,7 +24,7 @@ const ContactForm = () => {
       });
       const jsonRes = await res.json();
       console.log(jsonRes);
-      if (res.status.ok) {
+      if (res.ok) {
         toast.success("Email sent successfully");
         router.push("/");
         return;

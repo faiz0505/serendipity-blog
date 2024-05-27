@@ -30,7 +30,7 @@ const CreatePost = () => {
         setOtherCategory(res.category);
       });
     }
-  }, []);
+  }, [query]);
   const { user } = useUser();
   const router = useRouter();
   const userId = user?.publicMetadata.userId;
