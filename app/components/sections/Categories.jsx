@@ -22,7 +22,7 @@ const Categories = () => {
       selectedCategory !== "All" && selectedCategory,
       currentPage
     ).then((res) => setBlogs(res));
-    setTotalPages(Math.ceil(totalBlogs / 3));
+    setTotalPages(Math.ceil(totalBlogs / 6));
     setLoading(false);
   }, [selectedCategory, totalBlogs, currentPage]);
   return (
