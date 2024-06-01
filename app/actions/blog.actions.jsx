@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { categories } from "../utils/constants";
 
 export const fetchBlogs = async (category, page) => {
-  let postsPerPage = 3;
+  let postsPerPage = 6;
   try {
     await connectToDatabase();
 
