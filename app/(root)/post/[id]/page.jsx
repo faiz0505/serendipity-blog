@@ -37,7 +37,16 @@ const page = async ({ params }) => {
           <div>
             {`Published on ${createAt.split("T")[0]} by`}
             <span className="font-bold ml-2 underline">
-              {userData?.username}
+              {userData ? (
+                userData.username
+              ) : (
+                <Image
+                  src={"/loading.svg"}
+                  height={30}
+                  width={30}
+                  className="inline"
+                />
+              )}
             </span>
           </div>
           <div className="underline">
