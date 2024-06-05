@@ -9,7 +9,7 @@ const Blog = ({ id, title, content, category, date, userId, views }) => {
   const { user } = useUser();
   return (
     <div className="rounded-lg shadow-md p-3 dark:bg-[#18181b] bg-white dark:border dark:border-white h-60 relative">
-      {user?.publicMetadata?.userId === userId && (
+      {user && user.publicMetadata.userId === userId && (
         <div className="absolute right-2">
           <CustomPopover blogId={id} />
         </div>
