@@ -1,6 +1,7 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
+import Head from "next/head";
 export const metadata = {
   metadataBase: new URL("https://serendipityblog.vercel.app"),
   title: "Serendipty Blog",
@@ -17,6 +18,12 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
+        <Head>
+          <meta
+            name="google-site-verification"
+            content="HyILOzrPp0ItW1qdvg2StTMezp79vtfVjrS85Zc442A"
+          />
+        </Head>
         <body>
           <NextTopLoader />
           {children}
