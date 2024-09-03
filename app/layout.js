@@ -10,9 +10,7 @@ export const metadata = {
   keywords: [
     "serendipity blog, blogs, technology, tech insights, tech articles, lifestyle blogs",
   ],
-  verification: {
-    google: "r1wALZ2zHe3rrnLtmtrUOyLQqITUJH9wWCCSYeIuiAE",
-  },
+  
 };
 export default function RootLayout({ children }) {
   return (
